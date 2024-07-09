@@ -40,7 +40,25 @@ INSTALLED_APPS = [
     "candidate_app",
     "bootstrap5",
     "UserLogin",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "recruiter_app",
 ]
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
+
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

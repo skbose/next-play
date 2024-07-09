@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('candidate_app.urls')),
+    path('', include('recruiter_app.urls')),
     path('UserLogin/', include('django.contrib.auth.urls')),
     path('', include('UserLogin.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     #path('accounts/', include("django.contrib.auth.urls")),
+    path(r"", include(("candidate_app.urls", "candidate_app"), namespace="api")),
 
 ]

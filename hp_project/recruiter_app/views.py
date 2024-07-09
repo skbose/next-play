@@ -9,32 +9,28 @@ from .serializers import UploadSerializer
 class UploadViewSet(ViewSet):
     serializer_class = UploadSerializer
 
-    '''def list(self, request):
-        #return Response("GET API")
-        file = loader.get_template('upload_success.html')
-        return Response(file.render())'''
+    def list(self, request):
+        return Response("GET API")
 
     def create(self, request):
         file_uploaded = request.FILES.get('file_uploaded')
         content_type = file_uploaded.content_type
         response = "POST API and you have uploaded a {} file".format(content_type)
-        file = loader.get_template('upload_success.html')
-        #return Response(file.render())
         return Response(response)
 
-
-def candidates(request):
+'''
+def recruites(request):
     file = loader.get_template('home.html')
     return HttpResponse(file.render())
+'''
 
-
-def candidate_home(request):
-    file = loader.get_template('candidate_home.html')
+def recruiter_home(request):
+    file = loader.get_template('recruiter_home.html')
     return HttpResponse(file.render())
 
 
-def candidate_page(request):
-    file = loader.get_template('candidate_page.html')
+def recruiter_page(request):
+    file = loader.get_template('recruiter_page.html')
     username = ['admin']
     context = {
         'username': username
