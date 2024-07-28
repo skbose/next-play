@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PDF Upload Template · Bootstrap v5.2</title>
+    <link rel="stylesheet" href="{% static 'signin.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="text-center">
+
+<main class="form-signin w-100 m-auto">
+    <form id="upload-form" method="POST" enctype="multipart/form-data" action="/api/upload/">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">Upload PDF</h1>
+
+        {% if success %}
+            <div class="alert alert-success" role="alert">
+                File "{{ file_name }}" uploaded successfully as a {{ content_type }} file.
+            </div>
+        {% endif %}
+
+        <div class="form-floating">
+            <input type="file" class="form-control" name="file" id="file" accept="application/pdf" required>
+            <label for="file">Choose PDF file</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Upload</button>
+        <a href="/candidate_page" class="btn btn-primary my-2">Back</a>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+    </form>
+</main>
+
+<script>
+    document.getElementById('upload-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+
+        fetch('/api/upload/', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                location.reload();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
+</body>
+</html>
