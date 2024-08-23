@@ -2,6 +2,7 @@
 Web app for POC on hiring tech
 
 # A sample directory structure
+```
 | - frontend
 |  | - resources
 |  | - scripts
@@ -28,3 +29,4 @@ Web app for POC on hiring tech
 |  |  |  |  | - candidate
 |  |  |  |  | - recruiter
 |  |  |  | - login
+```
