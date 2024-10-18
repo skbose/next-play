@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Job, JobApplication
 from .serializers import JobSerializer, JobApplicationSerializer
 from django.contrib.auth import get_user_model
+from .utils import send_job_notification_to_candidates
 
 User = get_user_model()
 
@@ -17,6 +18,8 @@ def create_job(request):
     serializer = JobSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
         job = serializer.save(recruiter=request.user)
+        #added for sending email
+        send_job_notification_to_candidates(job, request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
