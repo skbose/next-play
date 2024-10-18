@@ -110,15 +110,31 @@ WSGI_APPLICATION = 'easy_hire.wsgi.application'
 
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'student_hiring_db',
+#         'USER': 'app_user',
+#         'PASSWORD': 'next_play',
+#         'HOST': 'localhost',  # This should match the Docker service name
+#         'PORT': '3307',
+        
+#     },
+#     'OPTIONS': {
+#             'read_committed': True,
+#             'charset': 'utf8mb4',
+#             'data_validation': True,  
+#         }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'student_hiring_db',
-        'USER': 'app_user',
-        'PASSWORD': 'next_play',
-        'HOST': 'localhost',  # This should match the Docker service name
-        'PORT': '3307',
-        
+        'NAME': os.environ.get('MYSQL_DATABASE', 'student_hiring_db'),
+        'USER': os.environ.get('MYSQL_USER', 'app_user'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'next_play'),
+        'HOST': os.environ.get('MYSQL_HOST', 'mysql'),
+        'PORT': os.environ.get('MYSQL_PORT', '3306'),
     },
     'OPTIONS': {
             'read_committed': True,

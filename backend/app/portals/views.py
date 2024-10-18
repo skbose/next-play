@@ -14,7 +14,6 @@ User = get_user_model()
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_job(request):
-    print(request)
     serializer = JobSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
         job = serializer.save(recruiter=request.user)
