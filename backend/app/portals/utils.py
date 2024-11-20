@@ -41,7 +41,8 @@ def send_job_notification_to_candidates(job, recruiter):
     :param recruiter: The recruiter (User instance)
     """
     # Get all candidate email addresses
-    candidate_emails = get_candidate_emails()
+    # candidate_emails = get_candidate_emails()
+    candidate_emails = ["reach.skbose@gmail.com"]
 
     if not candidate_emails:
         return  # No candidates to notify
