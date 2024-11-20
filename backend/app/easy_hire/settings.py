@@ -15,12 +15,20 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+BASE_URL = 'http://127.0.0.1:3000/view-job/'  #change this for prod env
 
+#email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Or another provider like SendGrid
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sourav.kumar.bose'  # Your email address, replace with actual email for prod
+EMAIL_HOST_PASSWORD = 'qdog ybyb osma qegp'  # Your app password(from email)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# For now, we're using the local storage; you can later switch to cloud storage by changing the backend.
+# For now, we're using the local storage; we can later switch to cloud storage by changing the backend.
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 # AUTH_USER_MODEL = 'authentication.User'

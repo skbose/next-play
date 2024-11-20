@@ -36,6 +36,20 @@ def login_user(request):
     else:
         return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
+# def logout_view(request):
+#     logout(request)
+#     return redirect('login')
+
+@api_view(['POST'])
 def logout_view(request):
-    logout(request)
-    return redirect('login')  # Redirect to the login page after logging out
+    """
+    Blacklists the user's refresh token to effectively log them out.
+    """
+    try:
+        # Get the token from the request headers (replace 'Authorization' with your header name if different)
+        refresh = request.META.get('HTTP_AUTHORIZATION').split(' ')[1]
+        token = RefreshToken(refresh)
+        token.blacklist()
+        return Response({"message": "Successfully logged out."}, status=status.HTTP_205_RESET_CONTENT)
+    except Exception as e:
+        return Response({"error": "Unable to log out."}, status=status.HTTP_400_BAD_REQUEST)
