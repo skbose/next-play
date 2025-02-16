@@ -42,7 +42,7 @@ def send_job_notification_to_candidates(job, recruiter):
     """
     # Get all candidate email addresses
     # candidate_emails = get_candidate_emails()
-    candidate_emails = ["reach.skbose@gmail.com"]
+    candidate_emails = ["mredul.sarda@gmail.com", "reach.skbose@gmail.com"]
 
     if not candidate_emails:
         return  # No candidates to notify
