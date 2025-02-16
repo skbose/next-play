@@ -26,5 +26,5 @@ urlpatterns = [
     path('backend/admin/', admin.site.urls),
     path('backend/auth/', include('authentication.urls')),
     path('backend/portal/', include('portals.urls')),
-    
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

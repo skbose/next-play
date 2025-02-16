@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-BASE_URL = 'http://127.0.0.1:3000/view-job/'  #change this for prod env
+BASE_URL = 'https://campus.agoryx.com/backend/view-job/'  #change this for prod env
 
 #email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
