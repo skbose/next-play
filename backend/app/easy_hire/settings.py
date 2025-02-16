@@ -44,7 +44,7 @@ DEBUG = True
 AUTH_USER_MODEL = 'authentication.User'
 CORS_ALLOW_ALL_ORIGINS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['campus.agoryx.com']
 
 AUTHENTICATION_BACKENDS = [
     'authentication.backends.UserIDBackend',  # Custom backend
